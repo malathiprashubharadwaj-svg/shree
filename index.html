@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>♡ a little something ♡</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      background:
+        radial-gradient(circle at top, #fff1f6, #f7dce8 45%, #e8c4d7);
+
+      font-family: "Courier New", monospace;
+      color: #4b2637;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 430px;
+      min-height: 560px;
+
+      padding: 35px 25px;
+
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 28px;
+
+      box-shadow: 0 20px 60px rgba(100, 45, 75, 0.18);
+
+      backdrop-filter: blur(10px);
+    }
+
+    .top {
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.6;
+      margin-bottom: 25px;
+    }
+
+    #screen {
+      min-height: 350px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .line {
+      font-size: 16px;
+      line-height: 1.9;
+      margin: 4px 0;
+
+      opacity: 0;
+      transform: translateY(10px);
+
+      animation: appear 0.7s forwards;
+    }
+
+    .final {
+      text-align: center;
+      font-size: 25px;
+      margin-top: 25px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 18px;
+
+      background: #7d405d;
+
+      margin-left: 4px;
+      vertical-align: -3px;
+
+      animation: blink 0.8s infinite;
+    }
+
+    button {
+      display: block;
+
+      margin: 20px auto 0;
+      padding: 12px 24px;
+
+      border: none;
+      border-radius: 999px;
+
+      background: #7d405d;
+      color: white;
+
+      font-family: inherit;
+      font-size: 15px;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -30px;
+
+      pointer-events: none;
+
+      animation: float 6s linear forwards;
+      opacity: 0.7;
+    }
+
+    @keyframes appear {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.7;
+      }
+
+      to {
+        transform: translateY(-110vh) rotate(25deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <div class="top">
+      ♡ a tiny message.exe ♡
+    </div>
+
+    <div id="screen"></div>
+
+    <button id="button">
+      click me ♡
+    </button>
+
+  </div>
+
+
+  <script>
+
+    const messages = [
+
+      'a = "Shree ♡"',
+
+      'b = "I love you"',
+
+      'c = "I love you so much"',
+
+      'd = "You are my cutest person ♡"',
+
+      'e = "You make my days softer"',
+
+      'f = "I’m always rooting for you"',
+
+      'g = "more love than words can hold ♡"'
+
+    ];
+
+
+    const screen = document.getElementById("screen");
+    const button = document.getElementById("button");
+
+
+    function createHearts() {
+
+      for (let i = 0; i < 25; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.className = "heart";
+
+        const symbols = ["♡", "♥", "💗", "💕"];
+
+        heart.textContent =
+          symbols[Math.floor(Math.random() * symbols.length)];
+
+        heart.style.left =
+          Math.random() * 100 + "vw";
+
+        heart.style.fontSize =
+          14 + Math.random() * 20 + "px";
+
+        heart.style.animationDelay =
+          Math.random() * 2 + "s";
+
+        document.body.appendChild(heart);
+
+
+        setTimeout(() => {
+          heart.remove();
+        }, 8000);
+
+      }
+
+    }
+
+
+    function startMessage() {
+
+      button.style.display = "none";
+
+      screen.innerHTML = "";
+
+
+      messages.forEach((message, index) => {
+
+        setTimeout(() => {
+
+          const line = document.createElement("div");
+
+          line.className = "line";
+
+          line.textContent = message;
+
+          screen.appendChild(line);
+
+
+          if (index === messages.length - 1) {
+
+            setTimeout(() => {
+
+              const final =
+                document.createElement("div");
+
+              final.className = "line final";
+
+              final.innerHTML =
+                'I love you, Shree ♡' +
+                '<span class="cursor"></span>';
+
+              screen.appendChild(final);
+
+              createHearts();
+
+            }, 1000);
+
+          }
+
+        }, index * 900);
+
+      });
+
+    }
+
+
+    button.addEventListener(
+      "click",
+      startMessage
+    );
+
+  </script>
+
+</body>
+</html>
