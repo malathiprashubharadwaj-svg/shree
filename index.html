@@ -1,459 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>♡ For My Man ♡</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <title>For My Appa ✨</title>
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 20% 10%, #fff7fb, transparent 35%),
-    radial-gradient(circle at 80% 90%, #ffd8e8, transparent 35%),
-    linear-gradient(135deg, #f8dce8, #efc4d7);
-  font-family: "Courier New", monospace;
-  color: #4b2637;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.card {
-  position: relative;
-  z-index: 5;
-  width: 90%;
-  max-width: 440px;
-  min-height: 570px;
-  padding: 45px 25px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
 
-  background: rgba(255,255,255,.86);
-  border: 1px solid rgba(255,255,255,.95);
-  border-radius: 30px;
+    body {
+      overflow: hidden;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #f7efd5;
+      background:
+        radial-gradient(circle at 50% 20%, #263b59 0%, #101a2c 35%, #050914 75%, #02040a 100%);
+    }
 
-  box-shadow: 0 25px 70px rgba(100,45,75,.22);
-  backdrop-filter: blur(12px);
-}
+    /* STAR FIELD */
 
-.top {
-  position: absolute;
-  top: 24px;
-  left: 0;
-  right: 0;
-  font-size: 12px;
-  opacity: .55;
-}
+    .stars,
+    .stars2,
+    .stars3 {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+    }
 
-section {
-  width: 100%;
-}
+    .stars {
+      background-image:
+        radial-gradient(circle, #ffffff 1px, transparent 1px);
+      background-size: 70px 70px;
+      opacity: 0.35;
+      animation: drift 35s linear infinite;
+    }
 
-.hidden {
-  display: none;
-}
+    .stars2 {
+      background-image:
+        radial-gradient(circle, #f5d77a 1px, transparent 1px);
+      background-size: 110px 110px;
+      background-position: 20px 30px;
+      opacity: 0.35;
+      animation: drift 50s linear infinite reverse;
+    }
 
-.emoji {
-  font-size: 58px;
-  margin-bottom: 12px;
-  animation: float 2s ease-in-out infinite;
-}
+    .stars3 {
+      background-image:
+        radial-gradient(circle, #ffffff 1.5px, transparent 1.5px);
+      background-size: 180px 180px;
+      opacity: 0.25;
+    }
 
-h1 {
-  font-size: 29px;
-  margin: 10px 0 18px;
-}
+    @keyframes drift {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(100px);
+      }
+    }
 
-p {
-  font-size: 16px;
-  line-height: 1.8;
-}
+    /* MAIN */
 
-button {
-  border: none;
-  border-radius: 999px;
-  padding: 14px 22px;
-  margin: 10px 5px;
-  font-family: inherit;
-  font-size: 14px;
-  color: white;
-  background: #7d405d;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(125,64,93,.25);
-  transition: .25s;
-}
+    .scene {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 5;
+      padding: 20px;
+    }
 
-button:hover {
-  transform: scale(1.06);
-}
+    .card {
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 42px 28px;
+      text-align: center;
 
-#no {
-  background: #9b7183;
-}
+      background: rgba(7, 12, 23, 0.82);
 
-.buttons {
-  margin-top: 25px;
-  min-height: 75px;
-}
+      border: 1px solid rgba(232, 195, 93, 0.35);
+      border-radius: 28px;
 
-#noMessage {
-  min-height: 30px;
-  margin-top: 12px;
-  font-weight: bold;
-  font-size: 14px;
-}
+      box-shadow:
+        0 0 40px rgba(228, 187, 75, 0.08),
+        inset 0 0 35px rgba(255, 255, 255, 0.015);
 
-.final-heart {
-  font-size: 70px;
-  animation: heartbeat 1s infinite;
-}
+      backdrop-filter: blur(12px);
 
-.final-text {
-  font-size: 19px;
-  line-height: 1.9;
-}
+      animation: appear 1.5s ease;
+    }
 
-.signature {
-  margin-top: 25px;
-  opacity: .6;
-  font-size: 13px;
-}
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.96);
+      }
 
-.heart {
-  position: fixed;
-  bottom: -50px;
-  pointer-events: none;
-  z-index: 1;
-  animation: rise linear forwards;
-}
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
 
-.sparkle {
-  position: fixed;
-  pointer-events: none;
-  z-index: 10;
-  animation: sparkle 1.5s forwards;
-}
+    /* GOLD SYMBOL */
 
-@keyframes float {
-  0%,100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
+    .symbol {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 22px;
 
-@keyframes heartbeat {
-  0%,100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.18);
-  }
-}
+      border-radius: 50%;
 
-@keyframes rise {
-  from {
-    transform: translateY(0) rotate(0);
-    opacity: .8;
-  }
-  to {
-    transform: translateY(-115vh) rotate(30deg);
-    opacity: 0;
-  }
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-@keyframes sparkle {
-  0% {
-    transform: scale(.3);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.8) translateY(-80px);
-    opacity: 0;
-  }
-}
+      font-size: 45px;
 
-@media(max-width:430px) {
-  .card {
-    min-height: 540px;
-    padding: 40px 20px 25px;
-  }
+      background:
+        radial-gradient(circle,
+          rgba(245, 214, 124, 0.25),
+          rgba(245, 214, 124, 0.03) 70%);
 
-  h1 {
-    font-size: 26px;
-  }
+      border: 1px solid rgba(245, 214, 124, 0.45);
 
-  p {
-    font-size: 15px;
-  }
-}
-</style>
+      box-shadow:
+        0 0 30px rgba(245, 214, 124, 0.12);
+
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 25px rgba(245, 214, 124, 0.08);
+      }
+
+      50% {
+        box-shadow: 0 0 45px rgba(245, 214, 124, 0.25);
+      }
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #f4d477;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 18px rgba(244, 212, 119, 0.2);
+    }
+
+    .subtitle {
+      color: #aaaeb8;
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    p {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.8;
+      color: #e2e0d9;
+      margin: 14px 0;
+    }
+
+    .highlight {
+      color: #f4d477;
+      font-weight: 600;
+    }
+
+    /* BUTTON */
+
+    button {
+      margin-top: 25px;
+      padding: 15px 28px;
+
+      border-radius: 50px;
+      border: 1px solid rgba(245, 214, 124, 0.65);
+
+      background: linear-gradient(
+        135deg,
+        #b58a2c,
+        #f1d277,
+        #b58a2c
+      );
+
+      color: #111;
+      font-weight: bold;
+      font-size: 15px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 5px 25px rgba(245, 214, 124, 0.15);
+
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-3px) scale(1.04);
+
+      box-shadow:
+        0 8px 35px rgba(245, 214, 124, 0.3);
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    /* HIDDEN */
+
+    .hidden {
+      display: none;
+    }
+
+    /* DIVIDER */
+
+    .divider {
+      width: 80px;
+      height: 1px;
+      margin: 25px auto;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #e7c45d,
+        transparent
+      );
+    }
+
+    /* FINAL */
+
+    .final-title {
+      font-size: 31px;
+      color: #f4d477;
+      margin-bottom: 18px;
+    }
+
+    .signature {
+      margin-top: 28px;
+      font-size: 18px;
+      color: #f4d477;
+      font-family: Georgia, serif;
+      font-style: italic;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #8f929c;
+      margin-top: 20px;
+    }
+
+    /* FLOATING PARTICLES */
+
+    .particle {
+      position: fixed;
+      bottom: -30px;
+      pointer-events: none;
+      color: #f4d477;
+      opacity: 0;
+
+      animation: rise linear forwards;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(-110vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* SCROLLBAR */
+
+    .card::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .card::-webkit-scrollbar-thumb {
+      background: #9f7c2e;
+      border-radius: 10px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 500px) {
+
+      .card {
+        padding: 35px 22px;
+        max-height: 88vh;
+      }
+
+      h1 {
+        font-size: 31px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .symbol {
+        width: 82px;
+        height: 82px;
+        font-size: 40px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div id="hearts"></div>
+  <!-- STARS -->
 
-<main class="card">
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
 
-  <div class="top">
-    ♡ a tiny question for my favorite man ♡
+
+  <div class="scene">
+
+    <div class="card">
+
+      <!-- INTRO -->
+
+      <div id="intro">
+
+        <div class="symbol">
+          🫂
+        </div>
+
+        <div class="subtitle">
+          A little something from my heart
+        </div>
+
+        <h1>For My Appa</h1>
+
+        <div class="divider"></div>
+
+        <p>
+          There are some people who make life
+          feel a little safer...
+        </p>
+
+        <p>
+          Some people who stand quietly behind us,
+          believing in us even when we don't believe
+          in ourselves.
+        </p>
+
+        <p class="highlight">
+          For me, that person is you, Appa. ❤️
+        </p>
+
+        <button onclick="openLetter()">
+          Open My Heart ✨
+        </button>
+
+      </div>
+
+
+      <!-- LETTER -->
+
+      <div id="letter" class="hidden">
+
+        <div class="symbol">
+          ❤️
+        </div>
+
+        <h1>Dear Appa...</h1>
+
+        <div class="divider"></div>
+
+        <p>
+          I know I don't always say it,
+          but I want you to know how much
+          you mean to me.
+        </p>
+
+        <p>
+          Thank you for every sacrifice you made
+          without expecting anything in return.
+        </p>
+
+        <p>
+          Thank you for every time you protected me,
+          supported me, guided me,
+          and stood beside me.
+        </p>
+
+        <p>
+          A lot of the person I am today
+          exists because of the love,
+          strength, and values you gave me.
+        </p>
+
+        <p class="highlight">
+          You are one of the greatest blessings
+          in my life, Appa. ✨
+        </p>
+
+        <button onclick="openFinal()">
+          There's One More Thing...
+        </button>
+
+      </div>
+
+
+      <!-- FINAL -->
+
+      <div id="final" class="hidden">
+
+        <div class="symbol">
+          🌟
+        </div>
+
+        <div class="final-title">
+          Thank You, Appa
+        </div>
+
+        <div class="divider"></div>
+
+        <p>
+          No matter how much I grow,
+          no matter where life takes me,
+          I'll always be your little one.
+        </p>
+
+        <p>
+          And no matter how many years pass,
+          I'll always carry your love with me.
+        </p>
+
+        <p class="highlight">
+          I love you, Appa. ❤️
+        </p>
+
+        <p>
+          Thank you for being my strength,
+          my safe place,
+          and one of the most important
+          people in my life.
+        </p>
+
+        <div class="signature">
+          Forever your child ✨
+        </div>
+
+        <p class="small">
+          Made with all my heart, just for you.
+        </p>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <!-- FIRST SCREEN -->
-  <section id="intro">
 
-    <div class="emoji">💌</div>
+  <script>
 
-    <h1>Hey you...</h1>
+    function openLetter() {
 
-    <p>
-      I know you're already my boyfriend...<br>
-      but I still have something to ask you. 🥺❤️
-    </p>
+      document.getElementById("intro").classList.add("hidden");
 
-    <button onclick="openQuestion()">
-      open my question ♡
-    </button>
+      document.getElementById("letter").classList.remove("hidden");
 
-  </section>
+      celebration(12);
+    }
 
 
-  <!-- QUESTION -->
-  <section id="question" class="hidden">
+    function openFinal() {
 
-    <div class="emoji">❤️</div>
+      document.getElementById("letter").classList.add("hidden");
 
-    <h1>Will you choose me?</h1>
+      document.getElementById("final").classList.remove("hidden");
 
-    <p>
-      Today, tomorrow,<br>
-      on the silly days,<br>
-      the hard days,<br>
-      and every adventure ahead. 🥺
-    </p>
+      celebration(35);
+    }
 
-    <div class="buttons">
 
-      <button id="yes" onclick="sayYes()">
-        YES, ALWAYS 💗
-      </button>
+    function celebration(amount) {
 
-      <button id="no" onclick="sayNo()">
-        NO 🙄
-      </button>
+      const symbols = [
+        "✦",
+        "✧",
+        "✨",
+        "⋆",
+        "🌟",
+        "❤️"
+      ];
 
-    </div>
+      for (let i = 0; i < amount; i++) {
 
-    <div id="noMessage"></div>
+        const particle = document.createElement("div");
 
-  </section>
+        particle.className = "particle";
 
+        particle.innerHTML =
+          symbols[Math.floor(Math.random() * symbols.length)];
 
-  <!-- FINAL -->
-  <section id="final" class="hidden">
+        particle.style.left =
+          Math.random() * 100 + "vw";
 
-    <div class="final-heart">
-      💗
-    </div>
+        particle.style.fontSize =
+          (10 + Math.random() * 18) + "px";
 
-    <h1>You chose YES! 🥹</h1>
+        particle.style.animationDuration =
+          (3 + Math.random() * 5) + "s";
 
-    <p>
-      I knew there was only one right answer. 😌❤️
-    </p>
+        particle.style.animationDelay =
+          Math.random() * 1.5 + "s";
 
-    <p class="final-text">
-      You're stuck with me now. 😂💕<br><br>
-      I love you, my man. ❤️<br>
-      More than words can explain.
-    </p>
+        document.body.appendChild(particle);
 
-    <div class="signature">
-      — yours, always ♡
-    </div>
+        setTimeout(() => {
+          particle.remove();
+        }, 9000);
+      }
+    }
 
-  </section>
 
-</main>
+    /* Small background sparkle effect */
 
+    setInterval(() => {
 
-<script>
+      const sparkle = document.createElement("div");
 
-let noCount = 0;
+      sparkle.className = "particle";
 
-const messages = [
-  "Y no? 🥺👉👈",
-  "Come onnn... choose YES ❤️",
-  "Try again, handsome 😤💕",
-  "That's not the answer I wanted 🥺",
-  "Nopeee 😭 try YES!",
-  "There is only ONE correct answer 😌❤️"
-];
-
-
-function openQuestion() {
-
-  document.getElementById("intro").classList.add("hidden");
-
-  document.getElementById("question").classList.remove("hidden");
-
-}
-
-
-function sayNo() {
-
-  noCount++;
-
-  const message =
-    document.getElementById("noMessage");
-
-  message.textContent =
-    messages[Math.min(noCount - 1, messages.length - 1)];
-
-
-  const yes =
-    document.getElementById("yes");
-
-  const no =
-    document.getElementById("no");
-
-
-  /* Make YES bigger every time */
-  yes.style.transform =
-    "scale(" + Math.min(1 + noCount * .10, 1.5) + ")";
-
-
-  /* Make NO run away after a couple of tries */
-  if (noCount >= 2) {
-
-    const x =
-      Math.random() * 160 - 80;
-
-    const y =
-      Math.random() * 100 - 50;
-
-    no.style.transform =
-      "translate(" + x + "px," + y + "px)";
-
-  }
-
-}
-
-
-function sayYes() {
-
-  document
-    .getElementById("question")
-    .classList.add("hidden");
-
-  document
-    .getElementById("final")
-    .classList.remove("hidden");
-
-
-  createHeartExplosion();
-
-}
-
-
-function createHeart() {
-
-  const heart =
-    document.createElement("span");
-
-  heart.className = "heart";
-
-  const symbols = [
-    "♡",
-    "♥",
-    "💗",
-    "💕",
-    "💖",
-    "✨"
-  ];
-
-  heart.textContent =
-    symbols[
-      Math.floor(Math.random() * symbols.length)
-    ];
-
-  heart.style.left =
-    Math.random() * 100 + "vw";
-
-  heart.style.fontSize =
-    14 + Math.random() * 24 + "px";
-
-  heart.style.animationDuration =
-    4 + Math.random() * 4 + "s";
-
-  document
-    .getElementById("hearts")
-    .appendChild(heart);
-
-
-  setTimeout(() => {
-    heart.remove();
-  }, 8500);
-
-}
-
-
-function createHeartExplosion() {
-
-  for(let i = 0; i < 70; i++) {
-
-    setTimeout(() => {
-      createHeart();
-    }, i * 35);
-
-  }
-
-
-  for(let i = 0; i < 25; i++) {
-
-    setTimeout(() => {
-
-      const sparkle =
-        document.createElement("span");
-
-      sparkle.className = "sparkle";
-
-      sparkle.textContent = "✨";
+      sparkle.innerHTML = "✦";
 
       sparkle.style.left =
         Math.random() * 100 + "vw";
 
-      sparkle.style.top =
-        Math.random() * 100 + "vh";
+      sparkle.style.fontSize =
+        "10px";
+
+      sparkle.style.animationDuration =
+        "6s";
 
       document.body.appendChild(sparkle);
 
       setTimeout(() => {
         sparkle.remove();
-      }, 1500);
+      }, 6500);
 
-    }, i * 70);
+    }, 1200);
 
-  }
-
-}
-
-
-/* Floating hearts in the background */
-setInterval(createHeart, 650);
-
-</script>
+  </script>
 
 </body>
 </html>
