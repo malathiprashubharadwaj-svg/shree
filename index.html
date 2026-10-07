@@ -1,283 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>♡ For My Man ♡</title>
 
-  <title>♡ a little something ♡</title>
+<style>
+* {
+  box-sizing: border-box;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 10%, #fff7fb, transparent 35%),
+    radial-gradient(circle at 80% 90%, #ffd8e8, transparent 35%),
+    linear-gradient(135deg, #f8dce8, #efc4d7);
+  font-family: "Courier New", monospace;
+  color: #4b2637;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+.card {
+  position: relative;
+  z-index: 5;
+  width: 90%;
+  max-width: 440px;
+  min-height: 570px;
+  padding: 45px 25px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
-      background:
-        radial-gradient(circle at top, #fff1f6, #f7dce8 45%, #e8c4d7);
+  background: rgba(255,255,255,.86);
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 30px;
 
-      font-family: "Courier New", monospace;
-      color: #4b2637;
-    }
+  box-shadow: 0 25px 70px rgba(100,45,75,.22);
+  backdrop-filter: blur(12px);
+}
 
-    .card {
-      width: 90%;
-      max-width: 430px;
-      min-height: 560px;
+.top {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  right: 0;
+  font-size: 12px;
+  opacity: .55;
+}
 
-      padding: 35px 25px;
+section {
+  width: 100%;
+}
 
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: 28px;
+.hidden {
+  display: none;
+}
 
-      box-shadow: 0 20px 60px rgba(100, 45, 75, 0.18);
+.emoji {
+  font-size: 58px;
+  margin-bottom: 12px;
+  animation: float 2s ease-in-out infinite;
+}
 
-      backdrop-filter: blur(10px);
-    }
+h1 {
+  font-size: 29px;
+  margin: 10px 0 18px;
+}
 
-    .top {
-      text-align: center;
-      font-size: 13px;
-      opacity: 0.6;
-      margin-bottom: 25px;
-    }
+p {
+  font-size: 16px;
+  line-height: 1.8;
+}
 
-    #screen {
-      min-height: 350px;
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 22px;
+  margin: 10px 5px;
+  font-family: inherit;
+  font-size: 14px;
+  color: white;
+  background: #7d405d;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(125,64,93,.25);
+  transition: .25s;
+}
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+button:hover {
+  transform: scale(1.06);
+}
 
-    .line {
-      font-size: 16px;
-      line-height: 1.9;
-      margin: 4px 0;
+#no {
+  background: #9b7183;
+}
 
-      opacity: 0;
-      transform: translateY(10px);
+.buttons {
+  margin-top: 25px;
+  min-height: 75px;
+}
 
-      animation: appear 0.7s forwards;
-    }
+#noMessage {
+  min-height: 30px;
+  margin-top: 12px;
+  font-weight: bold;
+  font-size: 14px;
+}
 
-    .final {
-      text-align: center;
-      font-size: 25px;
-      margin-top: 25px;
-    }
+.final-heart {
+  font-size: 70px;
+  animation: heartbeat 1s infinite;
+}
 
-    .cursor {
-      display: inline-block;
-      width: 8px;
-      height: 18px;
+.final-text {
+  font-size: 19px;
+  line-height: 1.9;
+}
 
-      background: #7d405d;
+.signature {
+  margin-top: 25px;
+  opacity: .6;
+  font-size: 13px;
+}
 
-      margin-left: 4px;
-      vertical-align: -3px;
+.heart {
+  position: fixed;
+  bottom: -50px;
+  pointer-events: none;
+  z-index: 1;
+  animation: rise linear forwards;
+}
 
-      animation: blink 0.8s infinite;
-    }
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10;
+  animation: sparkle 1.5s forwards;
+}
 
-    button {
-      display: block;
+@keyframes float {
+  0%,100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
 
-      margin: 20px auto 0;
-      padding: 12px 24px;
+@keyframes heartbeat {
+  0%,100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.18);
+  }
+}
 
-      border: none;
-      border-radius: 999px;
+@keyframes rise {
+  from {
+    transform: translateY(0) rotate(0);
+    opacity: .8;
+  }
+  to {
+    transform: translateY(-115vh) rotate(30deg);
+    opacity: 0;
+  }
+}
 
-      background: #7d405d;
-      color: white;
+@keyframes sparkle {
+  0% {
+    transform: scale(.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.8) translateY(-80px);
+    opacity: 0;
+  }
+}
 
-      font-family: inherit;
-      font-size: 15px;
+@media(max-width:430px) {
+  .card {
+    min-height: 540px;
+    padding: 40px 20px 25px;
+  }
 
-      cursor: pointer;
+  h1 {
+    font-size: 26px;
+  }
 
-      transition: 0.2s;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-    }
-
-    .heart {
-      position: fixed;
-      bottom: -30px;
-
-      pointer-events: none;
-
-      animation: float 6s linear forwards;
-      opacity: 0.7;
-    }
-
-    @keyframes appear {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
-    }
-
-    @keyframes float {
-      from {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0.7;
-      }
-
-      to {
-        transform: translateY(-110vh) rotate(25deg);
-        opacity: 0;
-      }
-    }
-  </style>
+  p {
+    font-size: 15px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="card">
+<div id="hearts"></div>
 
-    <div class="top">
-      ♡ a tiny message.exe ♡
-    </div>
+<main class="card">
 
-    <div id="screen"></div>
-
-    <button id="button">
-      click me ♡
-    </button>
-
+  <div class="top">
+    ♡ a tiny question for my favorite man ♡
   </div>
 
+  <!-- FIRST SCREEN -->
+  <section id="intro">
 
-  <script>
+    <div class="emoji">💌</div>
 
-    const messages = [
+    <h1>Hey you...</h1>
 
-      'a = "Shree ♡"',
+    <p>
+      I know you're already my boyfriend...<br>
+      but I still have something to ask you. 🥺❤️
+    </p>
 
-      'b = "I love you"',
+    <button onclick="openQuestion()">
+      open my question ♡
+    </button>
 
-      'c = "I love you so much"',
+  </section>
 
-      'd = "You are my cutest person ♡"',
 
-      'e = "You make my days softer"',
+  <!-- QUESTION -->
+  <section id="question" class="hidden">
 
-      'f = "I’m always rooting for you"',
+    <div class="emoji">❤️</div>
 
-      'g = "more love than words can hold ♡"'
+    <h1>Will you choose me?</h1>
 
+    <p>
+      Today, tomorrow,<br>
+      on the silly days,<br>
+      the hard days,<br>
+      and every adventure ahead. 🥺
+    </p>
+
+    <div class="buttons">
+
+      <button id="yes" onclick="sayYes()">
+        YES, ALWAYS 💗
+      </button>
+
+      <button id="no" onclick="sayNo()">
+        NO 🙄
+      </button>
+
+    </div>
+
+    <div id="noMessage"></div>
+
+  </section>
+
+
+  <!-- FINAL -->
+  <section id="final" class="hidden">
+
+    <div class="final-heart">
+      💗
+    </div>
+
+    <h1>You chose YES! 🥹</h1>
+
+    <p>
+      I knew there was only one right answer. 😌❤️
+    </p>
+
+    <p class="final-text">
+      You're stuck with me now. 😂💕<br><br>
+      I love you, my man. ❤️<br>
+      More than words can explain.
+    </p>
+
+    <div class="signature">
+      — yours, always ♡
+    </div>
+
+  </section>
+
+</main>
+
+
+<script>
+
+let noCount = 0;
+
+const messages = [
+  "Y no? 🥺👉👈",
+  "Come onnn... choose YES ❤️",
+  "Try again, handsome 😤💕",
+  "That's not the answer I wanted 🥺",
+  "Nopeee 😭 try YES!",
+  "There is only ONE correct answer 😌❤️"
+];
+
+
+function openQuestion() {
+
+  document.getElementById("intro").classList.add("hidden");
+
+  document.getElementById("question").classList.remove("hidden");
+
+}
+
+
+function sayNo() {
+
+  noCount++;
+
+  const message =
+    document.getElementById("noMessage");
+
+  message.textContent =
+    messages[Math.min(noCount - 1, messages.length - 1)];
+
+
+  const yes =
+    document.getElementById("yes");
+
+  const no =
+    document.getElementById("no");
+
+
+  /* Make YES bigger every time */
+  yes.style.transform =
+    "scale(" + Math.min(1 + noCount * .10, 1.5) + ")";
+
+
+  /* Make NO run away after a couple of tries */
+  if (noCount >= 2) {
+
+    const x =
+      Math.random() * 160 - 80;
+
+    const y =
+      Math.random() * 100 - 50;
+
+    no.style.transform =
+      "translate(" + x + "px," + y + "px)";
+
+  }
+
+}
+
+
+function sayYes() {
+
+  document
+    .getElementById("question")
+    .classList.add("hidden");
+
+  document
+    .getElementById("final")
+    .classList.remove("hidden");
+
+
+  createHeartExplosion();
+
+}
+
+
+function createHeart() {
+
+  const heart =
+    document.createElement("span");
+
+  heart.className = "heart";
+
+  const symbols = [
+    "♡",
+    "♥",
+    "💗",
+    "💕",
+    "💖",
+    "✨"
+  ];
+
+  heart.textContent =
+    symbols[
+      Math.floor(Math.random() * symbols.length)
     ];
 
+  heart.style.left =
+    Math.random() * 100 + "vw";
 
-    const screen = document.getElementById("screen");
-    const button = document.getElementById("button");
+  heart.style.fontSize =
+    14 + Math.random() * 24 + "px";
 
+  heart.style.animationDuration =
+    4 + Math.random() * 4 + "s";
 
-    function createHearts() {
-
-      for (let i = 0; i < 25; i++) {
-
-        const heart = document.createElement("div");
-
-        heart.className = "heart";
-
-        const symbols = ["♡", "♥", "💗", "💕"];
-
-        heart.textContent =
-          symbols[Math.floor(Math.random() * symbols.length)];
-
-        heart.style.left =
-          Math.random() * 100 + "vw";
-
-        heart.style.fontSize =
-          14 + Math.random() * 20 + "px";
-
-        heart.style.animationDelay =
-          Math.random() * 2 + "s";
-
-        document.body.appendChild(heart);
+  document
+    .getElementById("hearts")
+    .appendChild(heart);
 
 
-        setTimeout(() => {
-          heart.remove();
-        }, 8000);
+  setTimeout(() => {
+    heart.remove();
+  }, 8500);
 
-      }
-
-    }
+}
 
 
-    function startMessage() {
+function createHeartExplosion() {
 
-      button.style.display = "none";
+  for(let i = 0; i < 70; i++) {
 
-      screen.innerHTML = "";
+    setTimeout(() => {
+      createHeart();
+    }, i * 35);
 
-
-      messages.forEach((message, index) => {
-
-        setTimeout(() => {
-
-          const line = document.createElement("div");
-
-          line.className = "line";
-
-          line.textContent = message;
-
-          screen.appendChild(line);
+  }
 
 
-          if (index === messages.length - 1) {
+  for(let i = 0; i < 25; i++) {
 
-            setTimeout(() => {
+    setTimeout(() => {
 
-              const final =
-                document.createElement("div");
+      const sparkle =
+        document.createElement("span");
 
-              final.className = "line final";
+      sparkle.className = "sparkle";
 
-              final.innerHTML =
-                'I love you, Shree ♡' +
-                '<span class="cursor"></span>';
+      sparkle.textContent = "✨";
 
-              screen.appendChild(final);
+      sparkle.style.left =
+        Math.random() * 100 + "vw";
 
-              createHearts();
+      sparkle.style.top =
+        Math.random() * 100 + "vh";
 
-            }, 1000);
+      document.body.appendChild(sparkle);
 
-          }
+      setTimeout(() => {
+        sparkle.remove();
+      }, 1500);
 
-        }, index * 900);
+    }, i * 70);
 
-      });
+  }
 
-    }
+}
 
 
-    button.addEventListener(
-      "click",
-      startMessage
-    );
+/* Floating hearts in the background */
+setInterval(createHeart, 650);
 
-  </script>
+</script>
 
 </body>
 </html>
